@@ -1,0 +1,14 @@
+{
+  "name": "html-editor",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "npm run build -- --watch"
+  },
+  "devDependencies": {
+    "rollup": "0.41.4",
+    "rollup-plugin-typescript": "0.8.1",
+    "rollup-watch": "3.2.2",
+    "typescript": "2.2.1"
+  }
+}
