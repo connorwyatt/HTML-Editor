@@ -37,13 +37,15 @@ export class HTMLEditor {
     let node = selection.focusNode;
     let isInEditor: boolean = false;
 
-    while (!isInEditor && node.parentElement) {
-      if (node.parentElement === this.editor) {
-        isInEditor = true;
-        break;
-      }
+    if (node) {
+      while (!isInEditor && node.parentElement) {
+        if (node.parentElement === this.editor) {
+          isInEditor = true;
+          break;
+        }
 
-      node = node.parentElement;
+        node = node.parentElement;
+      }
     }
 
     return isInEditor;
