@@ -4,19 +4,23 @@ export class HTMLEditor {
   constructor(private editor: HTMLElement) {
   }
 
-  setEnabled(enabled: boolean): void {
+  public getHtml(): string {
+    return this.editor.innerHTML;
+  }
+
+  public setEnabled(enabled: boolean): void {
     this.editor.contentEditable = String(enabled);
   }
 
-  setBold(): boolean {
+  public setBold(): boolean {
     return this.executeCommand(Action.BOLD);
   }
 
-  setItalic(): boolean {
+  public setItalic(): boolean {
     return this.executeCommand(Action.ITALIC);
   }
 
-  setUnderline(): boolean {
+  public setUnderline(): boolean {
     return this.executeCommand(Action.UNDERLINE);
   }
 
