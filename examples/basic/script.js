@@ -1,7 +1,7 @@
 (function () {
   var editor = document.querySelector('#editor');
 
-  var htmlEditor = new HTMLEditor(editor);
+  var htmlEditor = new HTMLEditor.Editor(editor);
 
   htmlEditor.setEnabled(true);
 

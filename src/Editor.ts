@@ -1,6 +1,6 @@
 import {Action} from './Action.constant';
 
-export class HTMLEditor {
+export class Editor {
   constructor(private editor: HTMLElement) {
   }
 

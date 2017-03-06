@@ -1,1 +1,1 @@
-export {HTMLEditor as default} from './HTMLEditor';
+export {Editor} from './Editor';
