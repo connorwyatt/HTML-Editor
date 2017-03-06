@@ -3,9 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "build": "rollup -c",
-    "build:watch": "npm run build -- --watch"
+    "build:watch": "npm run build -- --watch",
+    "test": "karma start karma.config.js --single-run"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.5.43",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-typescript": "^3.0.0-beta.1",
     "rollup": "^0.41.4",
     "rollup-plugin-typescript": "^0.8.1",
     "rollup-watch": "^3.2.2",
