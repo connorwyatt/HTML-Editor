@@ -103,6 +103,16 @@ describe('Editor', () => {
           expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
         });
       });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setBold()).not.toThrow();
+        });
+      });
     });
 
     describe('when the editor is disabled', () => {
@@ -213,6 +223,16 @@ describe('Editor', () => {
           expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
         });
       });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setItalic()).not.toThrow();
+        });
+      });
     });
 
     describe('when the editor is disabled', () => {
@@ -321,6 +341,16 @@ describe('Editor', () => {
 
         it('should not make the selected text underlined', () => {
           expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setUnderline()).not.toThrow();
         });
       });
     });
