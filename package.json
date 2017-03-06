@@ -4,7 +4,8 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "npm run build -- --watch",
-    "test": "karma start karma.config.js --single-run"
+    "test": "karma start karma.config.js --single-run",
+    "test:watch": "karma start karma.config.js"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.43",
@@ -12,7 +13,9 @@
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
+    "karma-mocha-reporter": "^2.2.2",
     "karma-typescript": "^3.0.0-beta.1",
+    "mocha": "^3.2.0",
     "rollup": "^0.41.4",
     "rollup-plugin-typescript": "^0.8.1",
     "rollup-watch": "^3.2.2",

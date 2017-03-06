@@ -5,6 +5,7 @@ module.exports = function(config) {
       require('karma-typescript'),
       require('karma-jasmine'),
       require('karma-coverage'),
+      require('karma-mocha-reporter'),
       require('karma-chrome-launcher')
     ],
     files: [
@@ -13,7 +14,10 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.ts': ['karma-typescript']
     },
-    reporters: ['progress', 'karma-typescript'],
-    browsers: ['Chrome']
+    reporters: ['mocha', 'karma-typescript'],
+    browsers: ['Chrome'],
+    mochaReporter: {
+      showDiff: true
+    }
   });
 };
