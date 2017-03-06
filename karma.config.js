@@ -9,6 +9,7 @@ module.exports = function(config) {
       require('karma-chrome-launcher')
     ],
     files: [
+      {pattern: 'index.ts'},
       {pattern: 'src/**/*.ts'}
     ],
     preprocessors: {
