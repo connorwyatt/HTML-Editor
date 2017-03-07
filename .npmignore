@@ -1,0 +1,10 @@
+coverage/
+examples/
+node_modules/
+.gitignore
+.npmignore
+**/*.ts
+karma.config.js
+rollup.config.js
+tsconfig.json
+yarn.lock
