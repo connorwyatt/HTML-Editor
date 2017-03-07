@@ -24,6 +24,10 @@ export class Editor {
     return this.executeCommand(Action.UNDERLINE);
   }
 
+  public removeFormat(): boolean {
+    return this.executeCommand(Action.REMOVE_FORMAT);
+  }
+
   private executeCommand(command: string): boolean {
     if (!this.isSelected()) {
       return false;

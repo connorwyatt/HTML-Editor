@@ -7,7 +7,7 @@ describe('Editor', () => {
   beforeEach(() => {
     editorElement = document.createElement('div');
 
-    editorElement.innerHTML = '<p>This is text!</p>';
+    editorElement.innerHTML = '<p>This is <b>awesome</b> text!</p>';
 
     document.body.appendChild(editorElement);
 
@@ -22,7 +22,7 @@ describe('Editor', () => {
 
   describe('when getting the HTML', () => {
     it('should return the contents of the element', () => {
-      expect(editor.getHtml()).toBe('<p>This is text!</p>');
+      expect(editor.getHtml()).toBe('<p>This is <b>awesome</b> text!</p>');
     });
   });
 
@@ -70,7 +70,7 @@ describe('Editor', () => {
         });
 
         it('should make the selected text bold', () => {
-          expect(editorElement.innerHTML).toBe('<p>This <b>is</b> text!</p>');
+          expect(editorElement.innerHTML).toBe('<p>This <b>is</b> <b>awesome</b> text!</p>');
         });
       });
 
@@ -134,7 +134,7 @@ describe('Editor', () => {
         });
 
         it('should not make the selected text bold', () => {
-          expect(editorElement.innerHTML).toBe('<p>This is text!</p>');
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
         });
       });
 
@@ -190,7 +190,7 @@ describe('Editor', () => {
         });
 
         it('should make the selected text italic', () => {
-          expect(editorElement.innerHTML).toBe('<p>This <i>is</i> text!</p>');
+          expect(editorElement.innerHTML).toBe('<p>This <i>is</i> <b>awesome</b> text!</p>');
         });
       });
 
@@ -254,7 +254,7 @@ describe('Editor', () => {
         });
 
         it('should not make the selected text italic', () => {
-          expect(editorElement.innerHTML).toBe('<p>This is text!</p>');
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
         });
       });
 
@@ -310,7 +310,7 @@ describe('Editor', () => {
         });
 
         it('should make the selected text underlined', () => {
-          expect(editorElement.innerHTML).toBe('<p>This <u>is</u> text!</p>');
+          expect(editorElement.innerHTML).toBe('<p>This <u>is</u> <b>awesome</b> text!</p>');
         });
       });
 
@@ -374,7 +374,7 @@ describe('Editor', () => {
         });
 
         it('should not make the selected text underlined', () => {
-          expect(editorElement.innerHTML).toBe('<p>This is text!</p>');
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
         });
       });
 
@@ -405,6 +405,122 @@ describe('Editor', () => {
 
         it('should not make the selected text underlined', () => {
           expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when removing the formatting', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const bold = editorElement.querySelector('p').querySelector('b');
+
+          const range = document.createRange();
+          range.selectNodeContents(bold.firstChild);
+
+          document.getSelection().addRange(range);
+
+          editor.removeFormat();
+        });
+
+        it('should remove the format from the selected text', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is awesome text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.innerHTML = '<p>This is <b>not</b> the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const bold = nonEditorElement.querySelector('p').querySelector('b');
+
+          const range = document.createRange();
+          range.selectNodeContents(bold.firstChild);
+
+          document.getSelection().addRange(range);
+
+          editor.removeFormat();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not remove the format from the selected text', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is <b>not</b> the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.removeFormat()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const bold = editorElement.querySelector('p').querySelector('b');
+
+          const range = document.createRange();
+          range.selectNodeContents(bold.firstChild);
+
+          document.getSelection().addRange(range);
+
+          editor.removeFormat();
+        });
+
+        it('should not remove the format from the selected text', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.innerHTML = '<p>This is <b>not</b> the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const bold = nonEditorElement.querySelector('p').querySelector('b');
+
+          const range = document.createRange();
+          range.selectNodeContents(bold.firstChild);
+
+          document.getSelection().addRange(range);
+
+          editor.removeFormat();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not remove the format from the selected text', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is <b>not</b> the editor!</p>');
         });
       });
     });
