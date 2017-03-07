@@ -80,6 +80,8 @@ describe('Editor', () => {
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
 
+          nonEditorElement.contentEditable = String(true);
+
           nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
 
           document.body.appendChild(nonEditorElement);
@@ -144,6 +146,8 @@ describe('Editor', () => {
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
 
+          nonEditorElement.contentEditable = String(true);
+
           nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
 
           document.body.appendChild(nonEditorElement);
@@ -199,6 +203,8 @@ describe('Editor', () => {
 
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
 
           nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
 
@@ -264,6 +270,8 @@ describe('Editor', () => {
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
 
+          nonEditorElement.contentEditable = String(true);
+
           nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
 
           document.body.appendChild(nonEditorElement);
@@ -319,6 +327,8 @@ describe('Editor', () => {
 
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
 
           nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
 
@@ -384,6 +394,8 @@ describe('Editor', () => {
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
 
+          nonEditorElement.contentEditable = String(true);
+
           nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
 
           document.body.appendChild(nonEditorElement);
@@ -438,6 +450,8 @@ describe('Editor', () => {
 
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
 
           nonEditorElement.innerHTML = '<p>This is <b>not</b> the editor!</p>';
 
@@ -500,6 +514,8 @@ describe('Editor', () => {
 
         beforeEach(() => {
           nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
 
           nonEditorElement.innerHTML = '<p>This is <b>not</b> the editor!</p>';
 
