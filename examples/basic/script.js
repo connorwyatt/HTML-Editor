@@ -26,6 +26,9 @@
       case 'underline':
         htmlEditor.setUnderline();
         break;
+      case 'removeFormat':
+        htmlEditor.removeFormat();
+        break;
     }
   }
 }());
