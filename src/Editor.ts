@@ -33,7 +33,7 @@ export class Editor {
       return false;
     }
 
-    document.execCommand(command);
+    return document.execCommand(command);
   }
 
   private isSelected(): boolean {
