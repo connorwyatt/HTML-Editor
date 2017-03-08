@@ -9,7 +9,7 @@
 
   buttons.forEach(function (button) {
     button.addEventListener('click', function (event) {
-      var action = event.target.dataset.action;
+      var action = event.currentTarget.dataset.action;
 
       dispatchAction(action);
     });
@@ -25,6 +25,9 @@
         break;
       case 'underline':
         htmlEditor.setUnderline();
+        break;
+      case 'strikeThrough':
+        htmlEditor.setStrikeThrough();
         break;
       case 'removeFormat':
         htmlEditor.removeFormat();
