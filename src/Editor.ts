@@ -24,6 +24,10 @@ export class Editor {
     return this.executeCommand(Action.UNDERLINE);
   }
 
+  public setStrikeThrough(): boolean {
+    return this.executeCommand(Action.STRIKE_THROUGH);
+  }
+
   public removeFormat(): boolean {
     return this.executeCommand(Action.REMOVE_FORMAT);
   }

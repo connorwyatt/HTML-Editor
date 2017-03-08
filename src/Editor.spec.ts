@@ -422,6 +422,130 @@ describe('Editor', () => {
     });
   });
 
+  describe('when making the selected text strike through', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setStrikeThrough();
+        });
+
+        it('should make the selected text strike through', () => {
+          expect(editorElement.innerHTML).toBe('<p>This <strike>is</strike> <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setStrikeThrough();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text strike through', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setStrikeThrough()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setStrikeThrough();
+        });
+
+        it('should not make the selected text strike through', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setStrikeThrough();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text strike through', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
   describe('when removing the formatting', () => {
     describe('when the editor is enabled', () => {
       beforeEach(() => {
