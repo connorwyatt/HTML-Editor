@@ -29,6 +29,21 @@
       case 'strikeThrough':
         htmlEditor.setStrikeThrough();
         break;
+      case 'alignLeft':
+        htmlEditor.setAlignLeft();
+        break;
+      case 'alignCenter':
+        htmlEditor.setAlignCenter();
+        break;
+      case 'alignRight':
+        htmlEditor.setAlignRight();
+        break;
+      case 'alignJustify':
+        htmlEditor.setAlignJustify();
+        break;
+      case 'strikeThrough':
+        htmlEditor.setStrikeThrough();
+        break;
       case 'removeFormat':
         htmlEditor.removeFormat();
         break;
