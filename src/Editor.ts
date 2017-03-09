@@ -28,6 +28,22 @@ export class Editor {
     return this.executeCommand(Action.STRIKE_THROUGH);
   }
 
+  public setAlignLeft(): boolean {
+    return this.executeCommand(Action.ALIGN_LEFT);
+  }
+
+  public setAlignCenter(): boolean {
+    return this.executeCommand(Action.ALIGN_CENTER);
+  }
+
+  public setAlignRight(): boolean {
+    return this.executeCommand(Action.ALIGN_RIGHT);
+  }
+
+  public setAlignJustify(): boolean {
+    return this.executeCommand(Action.ALIGN_JUSTIFY);
+  }
+
   public removeFormat(): boolean {
     return this.executeCommand(Action.REMOVE_FORMAT);
   }

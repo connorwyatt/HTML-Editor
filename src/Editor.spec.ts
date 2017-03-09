@@ -546,6 +546,504 @@ describe('Editor', () => {
     });
   });
 
+  describe('when making the selected text left aligned', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          paragraph.style.textAlign = 'center';
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignLeft();
+        });
+
+        it('should make the surrounding block left aligned', () => {
+          expect(editorElement.innerHTML).toBe('<p style="text-align: left;">This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignLeft();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block left aligned', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setAlignLeft()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignLeft();
+        });
+
+        it('should not make the surrounding block left aligned', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignLeft();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block left aligned', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text center aligned', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignCenter();
+        });
+
+        it('should make the surrounding block center aligned', () => {
+          expect(editorElement.innerHTML).toBe('<p style="text-align: center;">This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignCenter();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block center aligned', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setAlignCenter()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignCenter();
+        });
+
+        it('should not make the surrounding block center aligned', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignCenter();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block center aligned', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text right aligned', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignRight();
+        });
+
+        it('should make the surrounding block right aligned', () => {
+          expect(editorElement.innerHTML).toBe('<p style="text-align: right;">This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignRight();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block right aligned', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setAlignRight()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignRight();
+        });
+
+        it('should not make the surrounding block right aligned', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignRight();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block right aligned', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text justified', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignJustify();
+        });
+
+        it('should make the surrounding block justified', () => {
+          expect(editorElement.innerHTML).toBe('<p style="text-align: justify;">This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignJustify();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block justified', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setAlignJustify()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignJustify();
+        });
+
+        it('should not make the surrounding block justified', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setAlignJustify();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the surrounding block justified', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
   describe('when removing the formatting', () => {
     describe('when the editor is enabled', () => {
       beforeEach(() => {
