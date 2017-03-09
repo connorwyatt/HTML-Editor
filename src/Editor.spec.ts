@@ -1044,6 +1044,254 @@ describe('Editor', () => {
     });
   });
 
+  describe('when changing the selected text color', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setTextColor('#ff0000');
+        });
+
+        it('should change the selected text color', () => {
+          expect(editorElement.innerHTML).toBe('<p>This <span style="color: rgb(255, 0, 0);">is</span> <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setTextColor('#ff0000');
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not change the selected text color', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setUnderline()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setTextColor('#ff0000');
+        });
+
+        it('should not change the selected text color', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setTextColor('#ff0000');
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not change the selected text color', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when changing the selected text background color', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setBackgroundColor('#ff0000');
+        });
+
+        it('should change the selected text background color', () => {
+          expect(editorElement.innerHTML).toBe('<p>This <span style="background-color: rgb(255, 0, 0);">is</span> <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setBackgroundColor('#ff0000');
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not change the selected text background color', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setUnderline()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setBackgroundColor('#ff0000');
+        });
+
+        it('should not change the selected text background color', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setBackgroundColor('#ff0000');
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not change the selected text background color', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
   describe('when removing the formatting', () => {
     describe('when the editor is enabled', () => {
       beforeEach(() => {

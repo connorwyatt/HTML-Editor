@@ -7,5 +7,8 @@ export const Action = {
   ALIGN_CENTER: 'justifyCenter',
   ALIGN_RIGHT: 'justifyRight',
   ALIGN_JUSTIFY: 'justifyFull',
-  REMOVE_FORMAT: 'removeFormat'
+  TEXT_COLOR: 'foreColor',
+  BACKGROUND_COLOR: 'hiliteColor',
+  REMOVE_FORMAT: 'removeFormat',
+  STYLE_WITH_CSS: 'styleWithCSS'
 };

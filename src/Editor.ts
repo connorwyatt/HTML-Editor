@@ -44,16 +44,34 @@ export class Editor {
     return this.executeCommand(Action.ALIGN_JUSTIFY);
   }
 
+  public setTextColor(color: string): boolean {
+    return this.executeCommand(Action.TEXT_COLOR, color, true);
+  }
+
+  public setBackgroundColor(color: string): boolean {
+    return this.executeCommand(Action.BACKGROUND_COLOR, color, true);
+  }
+
   public removeFormat(): boolean {
     return this.executeCommand(Action.REMOVE_FORMAT);
   }
 
-  private executeCommand(command: string): boolean {
+  private executeCommand(command: string, value: string = null, styleWithCSS: boolean = false): boolean {
     if (!this.isSelected()) {
       return false;
     }
 
-    return document.execCommand(command);
+    if (styleWithCSS) {
+      document.execCommand(Action.STYLE_WITH_CSS, false, true);
+    }
+
+    let result = document.execCommand(command, false, value);
+
+    if (styleWithCSS) {
+      document.execCommand(Action.STYLE_WITH_CSS, false, false);
+    }
+
+    return result;
   }
 
   private isSelected(): boolean {
