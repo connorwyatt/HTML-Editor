@@ -41,8 +41,13 @@
       case 'alignJustify':
         htmlEditor.setAlignJustify();
         break;
-      case 'strikeThrough':
-        htmlEditor.setStrikeThrough();
+      case 'textColor':
+        var textColor = window.prompt('Enter the text color:', '#rrggbb or rgb(x, y, z)');
+        htmlEditor.setTextColor(textColor);
+        break;
+      case 'backgroundColor':
+        var backgroundColor = window.prompt('Enter the background color:', '#rrggbb or rgb(x, y, z)');
+        htmlEditor.setBackgroundColor(backgroundColor);
         break;
       case 'removeFormat':
         htmlEditor.removeFormat();
