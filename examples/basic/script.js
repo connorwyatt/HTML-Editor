@@ -49,6 +49,12 @@
         var backgroundColor = window.prompt('Enter the background color:', '#rrggbb or rgb(x, y, z)');
         htmlEditor.setBackgroundColor(backgroundColor);
         break;
+      case 'indent':
+        htmlEditor.indent();
+        break;
+      case 'outdent':
+        htmlEditor.outdent();
+        break;
       case 'removeFormat':
         htmlEditor.removeFormat();
         break;
