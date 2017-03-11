@@ -52,6 +52,14 @@ export class Editor {
     return this.executeCommand(Action.BACKGROUND_COLOR, color, true);
   }
 
+  public indent(): boolean {
+    return this.executeCommand(Action.INDENT);
+  }
+
+  public outdent(): boolean {
+    return this.executeCommand(Action.OUTDENT);
+  }
+
   public removeFormat(): boolean {
     return this.executeCommand(Action.REMOVE_FORMAT);
   }

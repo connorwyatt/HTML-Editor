@@ -1106,7 +1106,7 @@ describe('Editor', () => {
         });
 
         it('should not error', () => {
-          expect(() => editor.setUnderline()).not.toThrow();
+          expect(() => editor.setTextColor('#ff0000')).not.toThrow();
         });
       });
     });
@@ -1230,7 +1230,7 @@ describe('Editor', () => {
         });
 
         it('should not error', () => {
-          expect(() => editor.setUnderline()).not.toThrow();
+          expect(() => editor.setBackgroundColor('#ff0000')).not.toThrow();
         });
       });
     });
@@ -1286,6 +1286,286 @@ describe('Editor', () => {
         });
 
         it('should not change the selected text background color', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when indenting the selected text', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.indent();
+        });
+
+        it('should indent the selected text block', () => {
+          expect(editorElement.innerHTML).toBe(
+            '<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">'
+            + '<p>This is <b>awesome</b> text!</p>'
+            + '</blockquote>'
+          );
+        });
+
+        describe('when indenting text that is already indented', () => {
+          beforeEach(() => {
+            editor.indent();
+          });
+
+          it('should indent the selected text block again', () => {
+            expect(editorElement.innerHTML).toBe(
+              '<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">'
+              + '<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">'
+              + '<p>This is <b>awesome</b> text!</p>'
+              + '</blockquote>'
+              + '</blockquote>'
+            );
+          });
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.indent();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not indent the selected text block', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.indent()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.indent();
+        });
+
+        it('should not indent the selected text block', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.indent();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not indent the selected text block', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when outdenting the selected text', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          editorElement.innerHTML = '<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">' + editorElement.innerHTML + '</blockquote>';
+
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.outdent();
+        });
+
+        it('should outdent the selected text block', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+
+        describe('when outdenting text that is already outdented', () => {
+          beforeEach(() => {
+            editor.outdent();
+          });
+
+          it('should not modify the editor contents', () => {
+            expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+          });
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><p>This is not the editor!</p></blockquote>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.outdent();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not outdent the selected text block', () => {
+          expect(nonEditorElement.innerHTML).toBe('<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><p>This is not the editor!</p></blockquote>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.outdent()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.outdent();
+        });
+
+        it('should not outdent the selected text block', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.outdent();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not outdent the selected text block', () => {
           expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
         });
       });

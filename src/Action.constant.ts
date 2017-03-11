@@ -9,6 +9,8 @@ export const Action = {
   ALIGN_JUSTIFY: 'justifyFull',
   TEXT_COLOR: 'foreColor',
   BACKGROUND_COLOR: 'hiliteColor',
+  INDENT: 'indent',
+  OUTDENT: 'outdent',
   REMOVE_FORMAT: 'removeFormat',
   STYLE_WITH_CSS: 'styleWithCSS'
 };
