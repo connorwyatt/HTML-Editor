@@ -60,6 +60,14 @@ export class Editor {
     return this.executeCommand(Action.OUTDENT);
   }
 
+  public setOrderedList() : boolean {
+    return this.executeCommand(Action.ORDERED_LIST);
+  }
+
+  public setUnorderedList() : boolean {
+    return this.executeCommand(Action.UNORDERED_LIST);
+  }
+
   public removeFormat(): boolean {
     return this.executeCommand(Action.REMOVE_FORMAT);
   }

@@ -11,6 +11,8 @@ export const Action = {
   BACKGROUND_COLOR: 'hiliteColor',
   INDENT: 'indent',
   OUTDENT: 'outdent',
+  ORDERED_LIST: 'insertOrderedList',
+  UNORDERED_LIST: 'insertUnorderedList',
   REMOVE_FORMAT: 'removeFormat',
   STYLE_WITH_CSS: 'styleWithCSS'
 };
