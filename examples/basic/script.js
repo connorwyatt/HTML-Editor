@@ -55,6 +55,12 @@
       case 'outdent':
         htmlEditor.outdent();
         break;
+      case 'orderedList':
+        htmlEditor.setOrderedList();
+        break;
+      case 'unorderedList':
+        htmlEditor.setUnorderedList();
+        break;
       case 'removeFormat':
         htmlEditor.removeFormat();
         break;
