@@ -61,6 +61,12 @@
       case 'unorderedList':
         htmlEditor.setUnorderedList();
         break;
+      case 'subscript':
+        htmlEditor.setSubscript();
+        break;
+      case 'superscript':
+        htmlEditor.setSuperscript();
+        break;
       case 'removeFormat':
         htmlEditor.removeFormat();
         break;
