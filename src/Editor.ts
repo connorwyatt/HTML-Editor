@@ -68,6 +68,14 @@ export class Editor {
     return this.executeCommand(Action.UNORDERED_LIST);
   }
 
+  public setSubscript(): boolean {
+    return this.executeCommand(Action.SUBSCRIPT);
+  }
+
+  public setSuperscript(): boolean {
+    return this.executeCommand(Action.SUPERSCRIPT);
+  }
+
   public removeFormat(): boolean {
     return this.executeCommand(Action.REMOVE_FORMAT);
   }

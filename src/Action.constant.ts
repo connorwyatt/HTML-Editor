@@ -13,6 +13,8 @@ export const Action = {
   OUTDENT: 'outdent',
   ORDERED_LIST: 'insertOrderedList',
   UNORDERED_LIST: 'insertUnorderedList',
+  SUBSCRIPT: 'subscript',
+  SUPERSCRIPT: 'superscript',
   REMOVE_FORMAT: 'removeFormat',
   STYLE_WITH_CSS: 'styleWithCSS'
 };
