@@ -67,6 +67,27 @@
       case 'superscript':
         htmlEditor.setSuperscript();
         break;
+      case 'heading1':
+        htmlEditor.setHeading1();
+        break;
+      case 'heading2':
+        htmlEditor.setHeading2();
+        break;
+      case 'heading3':
+        htmlEditor.setHeading3();
+        break;
+      case 'heading4':
+        htmlEditor.setHeading4();
+        break;
+      case 'heading5':
+        htmlEditor.setHeading5();
+        break;
+      case 'heading6':
+        htmlEditor.setHeading6();
+        break;
+      case 'paragraph':
+        htmlEditor.setParagraph();
+        break;
       case 'removeFormat':
         htmlEditor.removeFormat();
         break;
