@@ -2068,6 +2068,878 @@ describe('Editor', () => {
     });
   });
 
+  describe('when making the selected text into a heading 1', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading1();
+        });
+
+        it('should make the selected text block into a heading 1', () => {
+          expect(editorElement.innerHTML).toBe('<h1>This is <b>awesome</b> text!</h1>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading1();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 1', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setHeading1()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading1();
+        });
+
+        it('should not make the selected text block into a heading 1', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading1();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 1', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text into a heading 2', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading2();
+        });
+
+        it('should make the selected text block into a heading 2', () => {
+          expect(editorElement.innerHTML).toBe('<h2>This is <b>awesome</b> text!</h2>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading2();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 2', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setHeading2()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading2();
+        });
+
+        it('should not make the selected text block into a heading 2', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading2();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 2', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text into a heading 3', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading3();
+        });
+
+        it('should make the selected text block into a heading 3', () => {
+          expect(editorElement.innerHTML).toBe('<h3>This is <b>awesome</b> text!</h3>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading3();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 3', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setHeading3()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading3();
+        });
+
+        it('should not make the selected text block into a heading 3', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading3();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 3', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text into a heading 4', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading4();
+        });
+
+        it('should make the selected text block into a heading 4', () => {
+          expect(editorElement.innerHTML).toBe('<h4>This is <b>awesome</b> text!</h4>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading4();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 4', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setHeading4()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading4();
+        });
+
+        it('should not make the selected text block into a heading 4', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading4();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 4', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text into a heading 5', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading5();
+        });
+
+        it('should make the selected text block into a heading 5', () => {
+          expect(editorElement.innerHTML).toBe('<h5>This is <b>awesome</b> text!</h5>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading5();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 5', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setHeading5()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading5();
+        });
+
+        it('should not make the selected text block into a heading 5', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading5();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 5', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text into a heading 6', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading6();
+        });
+
+        it('should make the selected text block into a heading 6', () => {
+          expect(editorElement.innerHTML).toBe('<h6>This is <b>awesome</b> text!</h6>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading6();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 6', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setHeading6()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading6();
+        });
+
+        it('should not make the selected text block into a heading 6', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setHeading6();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a heading 6', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
+  describe('when making the selected text into a paragraph', () => {
+    describe('when the editor is enabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(true);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          editorElement.innerHTML = '<h1>' + paragraph.innerHTML + '</h1>';
+
+          const heading = editorElement.querySelector('h1');
+
+          const range = document.createRange();
+          range.setStart(heading.firstChild, 5);
+          range.setEnd(heading.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setParagraph();
+        });
+
+        it('should make the selected text block into a paragraph', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setParagraph();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a paragraph', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+
+      describe('when there is no selection', () => {
+        beforeEach(() => {
+          document.getSelection().removeAllRanges();
+        });
+
+        it('should not error', () => {
+          expect(() => editor.setParagraph()).not.toThrow();
+        });
+      });
+    });
+
+    describe('when the editor is disabled', () => {
+      beforeEach(() => {
+        editor.setEnabled(false);
+      });
+
+      describe('when the selection is inside the editor', () => {
+        beforeEach(() => {
+          const paragraph = editorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 5);
+          range.setEnd(paragraph.firstChild, 7);
+
+          document.getSelection().addRange(range);
+
+          editor.setParagraph();
+        });
+
+        it('should not make the selected text block into a paragraph', () => {
+          expect(editorElement.innerHTML).toBe('<p>This is <b>awesome</b> text!</p>');
+        });
+      });
+
+      describe('when the selection is not inside the editor', () => {
+        let nonEditorElement: HTMLElement;
+
+        beforeEach(() => {
+          nonEditorElement = document.createElement('div');
+
+          nonEditorElement.contentEditable = String(true);
+
+          nonEditorElement.innerHTML = '<p>This is not the editor!</p>';
+
+          document.body.appendChild(nonEditorElement);
+
+          const paragraph = nonEditorElement.querySelector('p');
+
+          const range = document.createRange();
+          range.setStart(paragraph.firstChild, 8);
+          range.setEnd(paragraph.firstChild, 11);
+
+          document.getSelection().addRange(range);
+
+          editor.setParagraph();
+        });
+
+        afterEach(() => {
+          document.body.removeChild(nonEditorElement);
+        });
+
+        it('should not make the selected text block into a paragraph', () => {
+          expect(nonEditorElement.innerHTML).toBe('<p>This is not the editor!</p>');
+        });
+      });
+    });
+  });
+
   describe('when removing the formatting', () => {
     describe('when the editor is enabled', () => {
       beforeEach(() => {

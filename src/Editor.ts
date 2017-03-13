@@ -60,11 +60,11 @@ export class Editor {
     return this.executeCommand(Action.OUTDENT);
   }
 
-  public setOrderedList() : boolean {
+  public setOrderedList(): boolean {
     return this.executeCommand(Action.ORDERED_LIST);
   }
 
-  public setUnorderedList() : boolean {
+  public setUnorderedList(): boolean {
     return this.executeCommand(Action.UNORDERED_LIST);
   }
 
@@ -76,8 +76,40 @@ export class Editor {
     return this.executeCommand(Action.SUPERSCRIPT);
   }
 
+  public setHeading1(): boolean {
+    return this.formatBlock('H1');
+  }
+
+  public setHeading2(): boolean {
+    return this.formatBlock('H2');
+  }
+
+  public setHeading3(): boolean {
+    return this.formatBlock('H3');
+  }
+
+  public setHeading4(): boolean {
+    return this.formatBlock('H4');
+  }
+
+  public setHeading5(): boolean {
+    return this.formatBlock('H5');
+  }
+
+  public setHeading6(): boolean {
+    return this.formatBlock('H6');
+  }
+
+  public setParagraph(): boolean {
+    return this.formatBlock('P');
+  }
+
   public removeFormat(): boolean {
     return this.executeCommand(Action.REMOVE_FORMAT);
+  }
+
+  private formatBlock(tag: string): boolean {
+    return this.executeCommand(Action.FORMAT_BLOCK, tag);
   }
 
   private executeCommand(command: string, value: string = null, styleWithCSS: boolean = false): boolean {
@@ -89,7 +121,7 @@ export class Editor {
       document.execCommand(Action.STYLE_WITH_CSS, false, true);
     }
 
-    let result = document.execCommand(command, false, value);
+    const result = document.execCommand(command, false, value);
 
     if (styleWithCSS) {
       document.execCommand(Action.STYLE_WITH_CSS, false, false);

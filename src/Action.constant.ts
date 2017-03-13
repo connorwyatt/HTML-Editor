@@ -15,6 +15,8 @@ export const Action = {
   UNORDERED_LIST: 'insertUnorderedList',
   SUBSCRIPT: 'subscript',
   SUPERSCRIPT: 'superscript',
+  FORMAT_BLOCK: 'formatBlock',
+  INSERT_BR_ON_RETURN: 'insertBrOnReturn',
   REMOVE_FORMAT: 'removeFormat',
   STYLE_WITH_CSS: 'styleWithCSS'
 };
